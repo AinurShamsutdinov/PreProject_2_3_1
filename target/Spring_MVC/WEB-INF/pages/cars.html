@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cars</title>
+</head>
+<body>
+<table border="1">
+    <caption th:text = "#{captionCars}" ></caption>
+    <tr>
+        <th> Model </th>
+        <th> Payload </th>
+        <th> Max speed </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${allCars.empty}">
+        <td colspan="2"> No Cars Available </td>
+    </tr>
+    <tr th:each="car : ${allCars}">
+        <td><span th:text="${car.getModel()}"> Model </span></td>
+        <td><span th:text="${car.getPayload()}"> Payload </span></td>
+        <td><span th:text="${car.getMaxSpeedKmph()}"> Max speed </span></td>
+    </tr>
+    </tbody>
+</table>
+
+<form action="#" th:action="@{/adduser}" th:object="${user}"  method="post">
+    <label>Name</label>
+    <input type="text" th:field="*{name}" />
+    <br>
+    <label>Last Name</label>
+    <input type="text" th:field="*{lastName}"/>
+    <br>
+    <label>Name</label>
+    <input type="number"  th:field="*{age}"/>
+    <br>
+    <button name="submit" type="submit" value="0">Submit</button>
+</form>
+<div>
+    <th:block th:each="msg : ${messages}">
+        <h1 th:text="${msg}"></h1>
+    </th:block>
+</div>
+</body>
+</html>

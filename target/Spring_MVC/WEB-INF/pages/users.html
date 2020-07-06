@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+<div >
+    <table border="1">
+        <caption>Users</caption>
+        <thead>
+        <tr>
+            <th> Name </th>
+            <th> Last name </th>
+            <th> Age </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${allUsers}">
+            <td><span th:text="${user.getName()}"> Name </span></td>
+            <td><span th:text="${user.getLastName()}"> Last name </span></td>
+            <td><span th:text="${user.getAge()}"> Age </span></td>
+            <td>
+                <a class="btn btn-primary" th:href="@{/update/__${user.getId()}__}"  role="button" >Update</a>
+            </td>
+            <td>
+                <a class="btn btn-primary" th:href="@{/deleteuser/__${user.getId()}__}" role="button" >Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <div>Add User:</div>
+    <form  th:action="@{/adduser}" th:object="${user}"  method="post">
+        <label>Name</label>
+        <input type="text" th:field="*{name}" />
+        <br>
+        <label>Last Name</label>
+        <input type="text" th:field="*{lastName}"/>
+        <br>
+        <label>Age</label>
+        <input type="number"  th:field="*{age}"/>
+        <br>
+        <input type="submit" value="Submit"/>
+    </form>
+</div>
+</body>
+</html>
